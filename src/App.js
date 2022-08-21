@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import TodoList from './components/Todos/TodoList';
 import TodoForm from './components/Todos/TodoForm';
+import TodosActions from './components/Todos/TodosActions';
 
 import './App.css';
 
@@ -25,11 +26,26 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const toggleTodoHandler = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        return todo.id === id
+          ? { ...todo, isCompleted: !todo.isCompleted }
+          : { ...todo };
+      })
+    );
+  };
+
   return (
     <div className='App'>
       <h1>Todo App</h1>
       <TodoForm addTodo={addTodoHandler} />
-      <TodoList todos={todos} deleteTodo={deleteTodoHandler} />
+      <TodosActions />
+      <TodoList
+        todos={todos}
+        deleteTodo={deleteTodoHandler}
+        toggleTodo={toggleTodoHandler}
+      />
     </div>
   );
 }
