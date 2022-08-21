@@ -15,14 +15,14 @@ function App() {
       siCompleted: false,
       id: uuidv4(),
     };
-    console.log(newTodo);
+    // console.log(newTodo);
     setTodos([...todos, newTodo]);
     // now todos it's [{},{},{}...]
   };
 
-  const deleteTodoHandler = (index) => {
+  const deleteTodoHandler = (id) => {
     // el stay in arr if filter return true
-    setTodos(todos.filter((todo, idx) => idx !== index));
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
